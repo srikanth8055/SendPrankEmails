@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+
+
+
+</style>
+<h2>Index</h2>
+
+<div class="container ">
+    <form name="myForm" id="myForm" enctype="multipart/form-data">
+        <div class="form-inline">
+            <label>Enter Your Name</label>
+            <input type="text" name="Subject" class="form-control" placeholder="Enter Your Name" />
+        </div>
+
+        <div class="form-inline">
+            <label>Enter Your Crush Name</label>
+            <input type="text" name="BodyMessage" class="form-control" placeholder="Enter Your Crush Name" />
+        </div>
+        <div>
+            <input type="button" name="btnSubmit" id="btnSubmit" value="Calculate" />
+        </div>
+    </form>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+    $("#btnSubmit").on('click', function (event) {
+        event.preventDefault();
+        var formdata = new FormData($("#myForm").get(0));
+        $.ajax({
+            type: 'post',
+            url: "/Home/SendMessage",
+            data: formdata,
+            dataType: "json",
+            //contentType: "application/json; charset=utf-8",
+            processData: false,
+            cache: false,
+            contentType: false,
+            success: function (response) {
+                alert("Server 404.. Notfound!");
+            },
+            error: function (error) {
+                alert(error);
+            }
+
+        })
+    });
+
+</script>
